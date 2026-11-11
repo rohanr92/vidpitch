@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #080A0F;
+  --surface: #0E1118;
+  --surface2: #161B26;
+  --border: rgba(255, 255, 255, 0.07);
+  --accent: #00E5A0;
+  --accent2: #0066FF;
+  --text: #F0F2F7;
+  --muted: #6B7280;
+  --font-syne: 'Syne', sans-serif;
+  --font-dm: 'DM Sans', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-dm);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.35;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes drift1 { to { transform: translate(80px, 60px); } }
+@keyframes drift2 { to { transform: translate(-60px, -40px); } }
+@keyframes scrollSite {
+  from { transform: translateY(0); }
+  to { transform: translateY(-80px); }
+}
+@keyframes progressBar {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.animate-fade-up { animation: fadeUp 0.6s ease both; }
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ambient {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+.ambient-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,229,160,0.12) 0%, transparent 70%);
+  top: -200px; left: -200px;
+  animation: drift1 12s ease-in-out infinite alternate;
+}
+.ambient-2 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,102,255,0.1) 0%, transparent 70%);
+  bottom: -100px; right: -100px;
+  animation: drift2 15s ease-in-out infinite alternate;
+}
